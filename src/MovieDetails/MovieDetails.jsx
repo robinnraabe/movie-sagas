@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 // Displays the details for the selected movie
@@ -10,14 +10,17 @@ function MovieDetails({id}) {
   console.log(movie.description);
   console.log(movie.poster);
 
+  // Return to home (MovieList) page
   const history = useHistory();
   const goBack = () => {
     history.push('/');
   }
 
+  // Displays the title, poster, genres, and description 
+  // for the selected movie
   return (
     <div data-testid="movieDetails">
-      <h2>{movie[0].title}</h2>
+      <h1>{movie[0].title}</h1>
       <br />
       <img src={movie[0].poster} />
       <br/>
