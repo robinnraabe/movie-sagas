@@ -5,6 +5,7 @@ import { FormControl, FormLabel, TextField, Button, Select, MenuItem } from '@mu
 
 const AddMovie = () => {
     const genreList = useSelector(store => store.genres);
+    console.log('genrelist:', genreList);
     const dispatch = useDispatch();
     const history = useHistory();
 
@@ -13,7 +14,8 @@ const AddMovie = () => {
     }
     
     // Declares and sets new movie, with starting ID of 15
-    let [newMovie, setMovie] = useState({id: 15, title: ''});
+    let [newMovie, setMovie] = useState({});
+    let [genre, setGenre] = useState({id: 0, name: ''});
 
     const handleChange = (key) => (event) => {
         event.preventDefault();
@@ -25,13 +27,8 @@ const AddMovie = () => {
     // Sets the attributes of the new movie, sends to Redux
     const addNewMovie = (event) => {
         event.preventDefault();
+        console.log('genre:', newMovie.genre);
         dispatch({ type: 'ADD_MOVIE', payload: newMovie });
-        setMovie({id: newMovie.id + 1, 
-            title: newMovie.title,
-            poster: newMovie.poster,
-            description: newMovie.description,
-            genre_id: newMovie.genre
-        });
         goBack();
     }
 
@@ -79,13 +76,14 @@ const AddMovie = () => {
                     borderRadius: '5px', 
                     margin: '0px 3px', 
                     maxWidth: '180px'  }}
-                    value={newMovie.genre}
+                    value={genre}
                     label='Genre'
-                    onChange={handleChange}
+                    onChange={handleChange('genre_id')}
                 >
                     {genreList.map(genre => {
+                        console.log('return"s genre:', genre.id);
                         return (
-                            <MenuItem key={genre.id} value={genre}>{genre.name}</MenuItem>
+                            <MenuItem key={genre.id} value={genre.id}>{genre.name}</MenuItem>
                         );
                     })}
                 </Select>

@@ -6,9 +6,9 @@ import { useHistory } from 'react-router-dom';
 function MovieDetails({id}) {
   const movie = useSelector(store => store.details);
   console.log('movie details:', movie);
-  console.log(movie.title);
-  console.log(movie.description);
-  console.log(movie.poster);
+  console.log(movie[0].title);
+  console.log(movie[0].description);
+  console.log(movie[0].poster);
 
   // Return to home (MovieList) page
   const history = useHistory();
@@ -22,7 +22,7 @@ function MovieDetails({id}) {
     <div data-testid="movieDetails">
       <h1>{movie[0].title}</h1>
       <br />
-      <img src={movie[0].poster} />
+      <img src={movie[0].poster} width='300px'/>
       <br/>
       {movie.map(genre => {
           return (
