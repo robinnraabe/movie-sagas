@@ -12,7 +12,7 @@ const AddMovie = () => {
     const goBack = () => {
         history.push('/');
     }
-    
+
     // Declares new movie
     let [newMovie, setMovie] = useState({});
 
@@ -34,14 +34,14 @@ const AddMovie = () => {
     // Fetches list of genres on page load
     useEffect(() => {
         dispatch({ type: 'FETCH_GENRES' });
-      }, []);
+    }, []);
     
     return (
         <div> 
             <FormControl>
                 <FormLabel id='text-field' 
-                    sx={{ fontSize: '24px' }}>
-                        Add a new movie
+                sx={{ fontSize: '24px' }}>
+                    Add a new movie
                 </FormLabel>
                 <TextField sx={{ 
                     backgroundColor: 'white', 
@@ -79,11 +79,12 @@ const AddMovie = () => {
                     borderRadius: '5px', 
                     margin: '0px 3px', 
                     maxWidth: '180px'  }}
-                    value={genre}
+                    value={newMovie.genre_id}
                     label='Genre'
                     onChange={handleChange('genre_id')}
                 >
                     {genreList.map(genre => {
+                        console.log('return"s genre:', genre.id);
                         return (
                             <MenuItem 
                                 key={genre.id} 
@@ -115,11 +116,7 @@ const AddMovie = () => {
             >
                 Save
             </Button>
-
         </div>
     );
 }
-
-
 export default AddMovie;
-
