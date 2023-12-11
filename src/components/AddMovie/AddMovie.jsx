@@ -1,11 +1,11 @@
 import React, { useState, useEffect }from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { FormControl, FormLabel, TextField, Button, Select, MenuItem } from '@mui/material';
+import { FormControl, FormLabel, TextField, Button, 
+    Select, MenuItem } from '@mui/material';
 
 const AddMovie = () => {
     const genreList = useSelector(store => store.genres);
-    console.log('genrelist:', genreList);
     const dispatch = useDispatch();
     const history = useHistory();
 
@@ -13,10 +13,10 @@ const AddMovie = () => {
         history.push('/');
     }
     
-    // Declares and sets new movie, with starting ID of 15
+    // Declares new movie
     let [newMovie, setMovie] = useState({});
-    let [genre, setGenre] = useState({id: 0, name: ''});
 
+    // Sets attributes of new movie
     const handleChange = (key) => (event) => {
         event.preventDefault();
         setMovie({...newMovie, 
@@ -24,14 +24,14 @@ const AddMovie = () => {
         })
     }
 
-    // Sets the attributes of the new movie, sends to Redux
+    // Sends new movie to Redux and returns to homepage
     const addNewMovie = (event) => {
         event.preventDefault();
-        console.log('genre:', newMovie.genre);
         dispatch({ type: 'ADD_MOVIE', payload: newMovie });
         goBack();
     }
 
+    // Fetches list of genres on page load
     useEffect(() => {
         dispatch({ type: 'FETCH_GENRES' });
       }, []);
@@ -39,7 +39,10 @@ const AddMovie = () => {
     return (
         <div> 
             <FormControl>
-                <FormLabel id='text-field' sx={{ fontSize: '24px' }}>Add a new movie</FormLabel>
+                <FormLabel id='text-field' 
+                    sx={{ fontSize: '24px' }}>
+                        Add a new movie
+                </FormLabel>
                 <TextField sx={{ 
                     backgroundColor: 'white', 
                     borderRadius: '5px', 
@@ -81,9 +84,12 @@ const AddMovie = () => {
                     onChange={handleChange('genre_id')}
                 >
                     {genreList.map(genre => {
-                        console.log('return"s genre:', genre.id);
                         return (
-                            <MenuItem key={genre.id} value={genre.id}>{genre.name}</MenuItem>
+                            <MenuItem 
+                                key={genre.id} 
+                                value={genre.id}>
+                                    {genre.name}
+                            </MenuItem>
                         );
                     })}
                 </Select>
