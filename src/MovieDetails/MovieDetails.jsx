@@ -21,8 +21,12 @@ function MovieDetails({id}) {
       <br />
       <img src={movie[0].poster} />
       <br/>
+      {movie.map(genre => {
+          return (
+              <h3>{genre.name}</h3>
+          );
+        })}
       <p>{movie[0].description}</p>
-      {/* insert genre list here! */}
       <button onClick={goBack} data-testid="toList">
         Back to movie list
       </button>
