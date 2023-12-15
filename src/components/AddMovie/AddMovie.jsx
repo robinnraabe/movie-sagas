@@ -13,6 +13,21 @@ const AddMovie = () => {
         history.push('/');
     }
 
+    const textfieldStyle = {
+        backgroundColor: 'white', 
+        borderRadius: '5px', 
+        margin: '0px 3px', 
+        maxWidth: '180px'
+    }
+
+    const buttonStyle = {
+        margin: '10px auto', 
+        backgroundColor: 'plum', 
+        color: 'purple',
+        fontWeight: 'bold',
+        variant: 'contained'
+    }
+
     // Declares new movie
     let [newMovie, setMovie] = useState({});
 
@@ -38,39 +53,31 @@ const AddMovie = () => {
     
     return (
         <div> 
+            <br /><br /><br /><br /><br /><br /><br /><br /><br />
             <FormControl>
                 <FormLabel id='text-field' 
                 sx={{ fontSize: '24px' }}>
                     Add a new movie
                 </FormLabel>
-                <TextField sx={{ 
-                    backgroundColor: 'white', 
-                    borderRadius: '5px', 
-                    margin: '0px 3px', 
-                    maxWidth: '180px' }}
+                <TextField 
                     required 
                     type='text' 
                     label='Title' 
+                    style={textfieldStyle}
                     value={newMovie.title} 
                     onChange={handleChange('title')} />
                 <br />
-                <TextField sx={{ 
-                    backgroundColor: 'white', 
-                    borderRadius: '5px', 
-                    margin: '0px 3px', 
-                    maxWidth: '180px'  }}
+                <TextField 
                     type='text' 
                     label='Description' 
+                    style={textfieldStyle}
                     value={newMovie.description} 
                     onChange={handleChange('description')} />
                 <br />
-                <TextField sx={{ 
-                    backgroundColor: 'white', 
-                    borderRadius: '5px', 
-                    margin: '0px 3px', 
-                    maxWidth: '180px'  }}
+                <TextField 
                     type='text' 
                     label='Image URL' 
+                    style={textfieldStyle}
                     value={newMovie.poster} 
                     onChange={handleChange('poster')} />
                 <br />
@@ -84,7 +91,6 @@ const AddMovie = () => {
                     onChange={handleChange('genre_id')}
                 >
                     {genreList.map(genre => {
-                        console.log('return"s genre:', genre.id);
                         return (
                             <MenuItem 
                                 key={genre.id} 
@@ -99,21 +105,13 @@ const AddMovie = () => {
             <Button
                 type='button'
                 onClick={goBack}
-                variant = 'outlined'
-                sx={{ margin: '10px auto', 
-                backgroundColor: 'plum', 
-                color: 'white' }}
-            >
+                style={buttonStyle}>
                 Cancel
             </Button>
             <Button 
                 type='submit'
                 onClick={addNewMovie}
-                variant = 'outlined'
-                sx={{ margin: '10px auto', 
-                backgroundColor: 'plum', 
-                color: 'white' }}
-            >
+                style={buttonStyle}>
                 Save
             </Button>
         </div>

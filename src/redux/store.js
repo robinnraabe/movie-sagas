@@ -77,12 +77,23 @@ const genres = (state = [], action) => {
   }
 }
 
+// Sets status of /add route from Header component
+const pushed = (state = false, action) => {
+  switch (action.type) {
+    case 'SET_PUSHED':
+      return action.payload;
+    default:
+      return state;
+  }
+}
+
 // Create one store that all components can use
 const storeInstance = createStore(
   combineReducers({
     movies,
     genres,
-    details
+    details,
+    pushed
   }),
   // Add sagaMiddleware to our store
   applyMiddleware(sagaMiddleware, logger),
