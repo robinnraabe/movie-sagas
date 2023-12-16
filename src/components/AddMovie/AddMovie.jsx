@@ -14,18 +14,14 @@ const AddMovie = () => {
     }
 
     const textfieldStyle = {
-        backgroundColor: 'white', 
-        borderRadius: '5px', 
+        backgroundColor: 'lavender', 
+        borderRadius: '20px', 
         margin: '0px 3px', 
-        maxWidth: '180px'
+        width: '400px'
     }
 
     const buttonStyle = {
-        margin: '10px auto', 
-        backgroundColor: 'plum', 
-        color: 'purple',
-        fontWeight: 'bold',
-        variant: 'contained'
+
     }
 
     // Declares new movie
@@ -52,13 +48,13 @@ const AddMovie = () => {
     }, []);
     
     return (
-        <div> 
+        <div style= {{ width: '400px', margin: 'auto' }}> 
             <br /><br /><br /><br /><br /><br /><br /><br /><br />
             <FormControl>
-                <FormLabel id='text-field' 
-                sx={{ fontSize: '24px' }}>
+                <h2 style ={{ fontSize: '24px', color: 'lavender' }}>
                     Add a new movie
-                </FormLabel>
+                </h2>
+                <br />
                 <TextField 
                     required 
                     type='text' 
@@ -82,10 +78,10 @@ const AddMovie = () => {
                     onChange={handleChange('poster')} />
                 <br />
                 <Select sx={{ 
-                    backgroundColor: 'white', 
-                    borderRadius: '5px', 
+                    backgroundColor: 'lavender', 
+                    borderRadius: '20px', 
                     margin: '0px 3px', 
-                    maxWidth: '180px'  }}
+                    maxWidth: '400px'  }}
                     value={newMovie.genre_id}
                     label='Genre'
                     onChange={handleChange('genre_id')}
@@ -101,17 +97,33 @@ const AddMovie = () => {
                     })}
                 </Select>
             </FormControl>
-            <br />
+            <br /><br />
             <Button
+                disableRipple
                 type='button'
                 onClick={goBack}
-                style={buttonStyle}>
+                style={buttonStyle}
+                sx={[ {float: 'left'},
+                {backgroundColor: 'plum'}, 
+                {color: 'purple'},
+                {fontWeight: 'bold'},
+                {variant: 'contained'},
+                {padding: '8px 20px'},
+                {'&:hover': {backgroundColor: 'rgb(120, 130, 225)'}} ]}>
                 Cancel
             </Button>
             <Button 
+                disableRipple
                 type='submit'
                 onClick={addNewMovie}
-                style={buttonStyle}>
+                style={buttonStyle}
+                sx={[ {float: 'right'},
+                {backgroundColor: 'plum'}, 
+                {color: 'purple'},
+                {fontWeight: 'bold'},
+                {variant: 'contained'},
+                {padding: '8px 20px'},
+                {'&:hover': {backgroundColor: 'rgb(120, 130, 225)'}} ]}>
                 Save
             </Button>
         </div>

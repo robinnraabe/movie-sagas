@@ -25,6 +25,7 @@ function Header() {
             <Button 
                 type='button' 
                 variant='contained' 
+                disableRipple
                 sx={[
                     {border: '1px solid black'},
                     {color: 'purple'}, 
@@ -32,7 +33,7 @@ function Header() {
                     {backgroundColor: 'plum'}, 
                     {boxShadow: '-5px 5px 5px black'},
                     {marginTop: '15px'},
-                    {'&:hover': {backgroundColor: 'rgb(180, 90, 180)'}}
+                    {'&:hover': {backgroundColor: 'rgb(120, 130, 225)'}}
                 ]}
                 onClick={addMovie}>Add new movie</Button>
         </header>

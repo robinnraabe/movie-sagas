@@ -21,6 +21,21 @@ function MovieList() {
       })
   }
 
+  const cardStyle = {
+    marginTop: '10px',
+    display: 'flex', 
+    flexDirection: 'column', 
+    borderRadius: '10px', 
+    outlineStyle: 'solid',
+    backgroundColor: 'lavender',
+    outlineColor: `rgb(20, 20, 20)`, 
+    boxShadow: `-10px 10px 20px rgb(20, 20, 20)`,
+    color: 'rgb(20, 20, 20)',
+    maxWidth: '250px',
+    height: '460px',
+    marginBottom: 'auto'
+  }
+
   useEffect(() => {
     dispatch({ type: 'FETCH_MOVIES' });
     dispatch({ type: 'SET_PUSHED', payload: false });
@@ -32,22 +47,13 @@ function MovieList() {
       <Grid container spacing={2}>
         {movies.map(movie => {
           return (
-            <Grid item m={3} className="movies">
-              <Card data-testid='movieItem' key={movie.id} sx={{ 
-                marginTop: '10px',
-                display: 'flex', 
-                flexDirection: 'column', 
-                borderRadius: '10px', 
-                outlineStyle: 'solid',
-                backgroundColor: 'white',
-                outlineColor: `rgb(20, 20, 20)`, 
-                boxShadow: `-10px 10px 20px rgb(20, 20, 20)` }} 
-              >
-                <CardContent sx={{}}>
+            <Grid item m={3} className="movies" key={movie.id}>
+              <Card data-testid='movieItem' style={cardStyle}>
+                <CardContent>
                   <h3>{movie.title}</h3>
                 </CardContent>
-                <CardContent sx={{}}>
-                  <img src={movie.poster} width='200px'
+                <CardContent sx={{ padding: '0px', marginTop: 'auto' }}>
+                  <img src={movie.poster} width='250px'
                     data-testid="toDetails" 
                     alt={movie.title}
                     onClick={() => getDetails(movie.id)}
